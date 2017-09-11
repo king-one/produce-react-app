@@ -2,14 +2,15 @@
 // const glob = require('glob');
 const webpack = require('webpack');
 const path = require('path');
-const AssetsPlugin = require('assets-webpack-plugin');
+// const AssetsPlugin = require('assets-webpack-plugin');  //生成资源映射表插件  jsp.php后端渲染建议使用这个插件来动态加载js和css
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const htmlPagePluginConfig = require('./htmlpage.config');
 const entries = require('./entries');
 const commonPluginsConfig = [
-  new AssetsPlugin({
-    filename: 'dist/assets.js',
-    processOutput: assets => 'window.WEBPACK_ASSETS=' + JSON.stringify(assets)
-  }),
+  // new AssetsPlugin({
+  //   filename: 'dist/assets.js',
+  //   processOutput: assets => 'window.WEBPACK_ASSETS=' + JSON.stringify(assets)
+  // }), 
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
@@ -34,9 +35,9 @@ const commonPluginsConfig = [
   new ExtractTextPlugin({
     filename:'css/[name].[hash].css',
     allChunks: true
-  })
+  }),
+  ...htmlPagePluginConfig.plugin
 ]
-
 const baseConfig = {
   entry: Object.assign(entries, {
     'react-common': [
@@ -91,7 +92,8 @@ const baseConfig = {
       use: {
         loader: 'html-loader',
         options:{
-          attrs: ['img:src']
+          attrs: ['img:src']  //html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
+        //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了，就像下面这样
         }
       }
     },
