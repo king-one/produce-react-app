@@ -7,10 +7,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const htmlPagePluginConfig = require('./htmlpage.config');
 const entries = require('./entries');
 const commonPluginsConfig = [
-  // new AssetsPlugin({
-  //   filename: 'dist/assets.js',
-  //   processOutput: assets => 'window.WEBPACK_ASSETS=' + JSON.stringify(assets)
-  // }), 
+  /*new AssetsPlugin({
+    filename: 'dist/assets.js',
+    processOutput: assets => 'window.WEBPACK_ASSETS=' + JSON.stringify(assets)
+  }), */
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
@@ -64,7 +64,8 @@ const baseConfig = {
         loader: 'babel-loader',
         options: {
           presets: ['es2015', 'stage-2', 'stage-3'],
-          plugins: ['transform-runtime', 'transform-react-jsx',['import', { libraryName: 'antd', style: true }]]
+          plugins: ['transform-runtime', 'transform-react-jsx']
+          // plugins: ['transform-runtime', 'transform-react-jsx',['import', { libraryName: 'antd', style: true }]]  //antd css 按需加载配置
         }
       }
     }, {
@@ -93,7 +94,7 @@ const baseConfig = {
         loader: 'html-loader',
         options:{
           attrs: ['img:src']  //html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
-        //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了，就像下面这样
+        //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了
         }
       }
     },
