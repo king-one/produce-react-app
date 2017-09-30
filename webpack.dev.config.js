@@ -2,13 +2,13 @@
 const webpack = require('webpack');
 const path = require('path');
 const config = require('./webpack.config');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const devConfig = {
-  devtool: '#eval-source-map',
   devServer: {
     contentBase: path.resolve(__dirname),
     port: 8880
   },
+  devtool: '#eval-source-map',
   output: {
     filename: 'js/[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
@@ -19,11 +19,11 @@ const devConfig = {
       'process.env.NODE_ENV': JSON.stringify('development'),
       '__DEV__': 'true'
     }),
-    new OpenBrowserPlugin({
-      url: 'http://localhost:8880/'
-    }),
     new webpack.NoEmitOnErrorsPlugin(),
-    ...config.commonPluginsConfig
+    ...config.commonPluginsConfig,
+        new OpenBrowserPlugin({
+      url: 'http://localhost:8880/'
+    })
   ]
 };
 module.exports = Object.assign(config.baseConfig, devConfig);

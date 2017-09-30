@@ -1,19 +1,19 @@
 {
-  "name": "wetoo-fontend",
+  "name": "start-react-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "lint": "eslint functions public || true",
+    "lint": "eslint --fix --ext .js,.jsx src",
     "start": "webpack-dev-server  --progress --colors  --inline --hot --config ./webpack.dev.config.js",
-    "build": "set NODE_ENV=production && webpack --config ./webpack.pro.config.js",
-    // "fix": "eslint --fix ./javascripts/app/chart/chart-2.js"
+    "build": "set NODE_ENV=production && webpack --config ./webpack.pro.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "assets-webpack-plugin": "^3.5.1",
     "babel-core": "^6.25.0",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -23,10 +23,13 @@
     "clean-webpack-plugin": "^0.1.16",
     "css-loader": "^0.28.4",
     "eslint-loader": "^1.9.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-react": "^7.4.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
+    "less-loader": "^4.0.5",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.0",
     "webpack-dev-server": "^2.6.1"
@@ -34,10 +37,13 @@
   "dependencies": {
     "autoprefixer-loader": "^3.2.0",
     "echarts": "^3.6.2",
+    "eslint": "^4.8.0",
     "excellentexport": "^2.0.3",
     "jquery": "^1.11.0",
     "jquery-ui": "^1.12.1",
+    "less": "^2.7.2",
     "onfire.js": "^1.0.6",
+    "open-browser-webpack-plugin": "0.0.5",
     "rc-calendar": "^9.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

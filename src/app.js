@@ -4,12 +4,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store'
+import store from './store';
 import routes from './routes/index';
 import './index.less';
 ReactDOM.render(
   <Provider store={store}>
     { routes }
   </Provider>,
-  document.getElementById('root')
-);
+  document.getElementById('app')
+//多页应用多个页面入口
+); 
+if (document.head.getElementsByTagName('base') && document.head.getElementsByTagName('base')[0]) {
+  document.head.getElementsByTagName('base')[0].remove();
+}

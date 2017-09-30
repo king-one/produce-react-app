@@ -15,14 +15,14 @@ const proConfig = {
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new CleanWebpackPlugin(['dist']),
-    ...config.commonPluginsConfig,
     new webpack.optimize.UglifyJsPlugin({
       parallel: true,
       extractComments: true,
       compress: {
         warnings: false
       }
-    })
+    }),
+    ...config.commonPluginsConfig,
   ]
 }
 

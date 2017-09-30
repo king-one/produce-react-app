@@ -6,6 +6,7 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const htmlPagePluginConfig = require('./htmlpage.config');
 const entries = require('./entries');
+const resolve = str => path.resolve(__dirname, str);
 const commonPluginsConfig = [
   /*new AssetsPlugin({
     filename: 'dist/assets.js',
@@ -19,12 +20,11 @@ const commonPluginsConfig = [
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'react-common',
-    chunks:['react-common']
+    chunks: ['react-common']
   }),
-
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    minChunks: function(module) {
+    minChunks: function (module) {
       return module.context && module.context.indexOf('node_modules') !== -1;
     }
   }),
@@ -33,10 +33,10 @@ const commonPluginsConfig = [
     minChunks: Infinity
   }),
   new ExtractTextPlugin({
-    filename:'css/[name].[hash].css',
+    filename: 'css/[name].[hash].css',
     allChunks: true
   }),
-  ...htmlPagePluginConfig.plugin
+  ...htmlPagePluginConfig.plugin,
 ]
 const baseConfig = {
   entry: Object.assign(entries, {
@@ -50,9 +50,10 @@ const baseConfig = {
   }),
   resolve: {
     alias: {
-      '@': path.resolve(__dirname),
-      'node_modules': path.resolve(__dirname, 'node_modules'),
-      'page': path.resolve(__dirname, 'src/page'),
+      '@': resolve(''),
+      'components': resolve('src/components'),
+      'node_modules': resolve('node_modules'),
+      'pages': resolve('src/pages'),
     },
     extensions: ['.js', '.jsx']
   },
@@ -68,19 +69,17 @@ const baseConfig = {
           // plugins: ['transform-runtime', 'transform-react-jsx',['import', { libraryName: 'antd', style: true }]]  //antd css 按需加载配置
         }
       }
-    }, {
-      // test: /\.js$/,
-      // loader: "eslint-loader"
-    }, {
+    },
+    {
       test: /\.(css|less)$/,
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: ['css-loader','autoprefixer-loader','less-loader']
+        use: ['css-loader', 'autoprefixer-loader', 'less-loader']
       })
     },
     {
       test: /\.(png|jpg|gif)$/,
-      use:[{
+      use: [{
         loader: 'file-loader',
         options: {
           name: 'img/[name].[hash:8].[ext]',
@@ -92,15 +91,15 @@ const baseConfig = {
       test: /\.(html)$/,
       use: {
         loader: 'html-loader',
-        options:{
+        options: {
           attrs: ['img:src']  //html模板加载器，可以处理引用的静态资源，默认配置参数attrs=img:src，处理图片的src引用的资源
-        //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了
+          //比如你配置，attrs=img:src img:data-src就可以一并处理data-src引用的资源了
         }
       }
     },
     {
       test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
-      use:[{
+      use: [{
         loader: 'file-loader',
         options: {
           name: 'font/[name].[ext]',
