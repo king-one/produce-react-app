@@ -6,7 +6,6 @@ const modify = (state = false, action) => {
   switch (action.type) {
     case 'CHANGE_PASSWORD':
       return action.text;
-      break;
     case 'CHANGE_RESONCE':
       return action.text;
     default:

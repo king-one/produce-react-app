@@ -37,12 +37,15 @@
     "prefer-spread": 2,                     //首选展开运算
     "comma-dangle": 0,                        //不允许或强制在对象字面量或者数组属性的结尾使用逗号
     "padded-blocks": 0,                       //规定代码块前后是否要加空行
-    "prefer-const": 0,
+    "prefer-const": 1,
     "no-multi-spaces": 2,
-    "no-var": 0,
+    "no-var": 2,                               //禁用var
     "one-var": 0,
-    "class-methods-use-this": 1,
-    "no-unused-expressions": [2, { "allowShortCircuit": true }],
+    "no-unused-vars": 1,                              //连续声明
+    "no-console": 1,
+    "no-debugger": 2,                          //禁止使用debugger
+    "class-methods-use-this": 0,  //
+    "no-unused-expressions": [1, { "allowShortCircuit": true }],
     /**
      * https://github.com/airbnb/javascript/tree/master/react
      */
@@ -55,13 +58,18 @@
     "react/no-string-refs": 2,                    //Refs里使用回调函数
     "react/jsx-wrap-multilines": 2,               //多行的JSX标签写在 ()里
     "react/self-closing-comp": 2,                 //没有子元素的标签来说总是自己关闭标签
-    "react/jsx-no-bind": 2,                       //当在 render() 里使用事件处理方法时，提前在构造函数里把 this 绑定上去
+    "react/jsx-no-bind": 1,                       //当在 render() 里使用事件处理方法时，提前在构造函数里把 this 绑定上去
     "react/no-is-mounted": 2,                      //不要再使用 isMounted
-    "react/prop-types": [2, { "ignore": ["children", "className", "style"] }],
+    "react/prop-types": [0, { "ignore": ["children", "className", "style"] }],
     "jsx-a11y/href-no-hash": 0,
     "jsx-a11y/label-has-for": 0,
     "react/jsx-filename-extension": 0,
     "react/prefer-stateless-function": 0,
-    "react/require-default-props":0
+    "react/require-default-props":0,
+    "react/jsx-no-duplicate-props": 2,
+    "react/no-did-mount-set-state": 2,
+    "react/no-did-update-set-state": 2,
+    "react/no-direct-mutation-state": 2,
+    "react/no-unknown-property": 2
   }
 }

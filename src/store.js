@@ -3,5 +3,5 @@
  */
 import { createStore } from 'redux';
 import UserModify from './reducers/reducer';
-let store = createStore(UserModify);
+const store = createStore(UserModify);
 export default store;
