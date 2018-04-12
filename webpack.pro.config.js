@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const config = require('./webpack.config');
+const config = require('./webpack.base.config');
 const proConfig = {
   output: {
     filename: 'js/[name].[hash].js',
@@ -12,7 +12,7 @@ const proConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'NODE_ENV': JSON.stringify('production')
     }),
     new CleanWebpackPlugin(['dist']),
     new webpack.optimize.UglifyJsPlugin({

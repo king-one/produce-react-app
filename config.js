@@ -2,34 +2,31 @@
  * 全局配置
  */
 import axios from axios;
-import auth from 'public/authority'
-import { browserHistory } from 'react-router'
-axios.defaults.timeout = 5000;                        //响应时间
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-if (__DEV__) {
-  axios.defaults.baseURL = 'http://www.easy-mock.com/mock/59ae46e3e0dc6633419d14b6/example' //开发测试地址
-} else {
-  axios.defaults.baseURL = '/api/'
+import authority from 'public/authority';
+import { browserHistory } from 'react-router';
+// import NProgress from 'nprogress' //暂时不用
+//开发测试地址
+const baseConfig = {
+  baseURL: __DEV__ ? 'http://www.easy-mock.com/mock/59ae46e3e0dc6633419d14b6/example' : "/",
+  timeout: 5000,
 }
 //POST传参序列化(添加请求拦截器)
 axios.interceptors.request.use((config) => {
   //在发送请求之前做某件事
+  // NProgress.start()
   if (config.method === 'post') {
-    config.data = qs.stringify(config.data);
+    config.data = JSON.stringify(config.data);
   }
   return config;
 }, (error) => {
-  _.toast("错误的传参", 'fail');
-  return Promise.reject(error);
+  throw new Error("illegal parameter");
 });
 //返回状态判断(添加响应拦截器)
 axios.interceptors.response.use((res) => {
   //对响应数据做些事
+  // NProgress.done()
   if (typeof res !== 'object') {
-    comsole.log('response data should be JSON')
-    if (!res.data.success) {
-      return Promise.reject(res);
-    }
+    throw new Error('response data should be JSON');
   }
   if (!res.data.success) {
     return Promise.reject(res);
@@ -38,15 +35,13 @@ axios.interceptors.response.use((res) => {
     case 200:
       break
     case 401:
-      auth.destroy()
+      authority.destroy()
       browserHistory.push('/login')
       break
     default:
-      console.log(res.message || 'unknown error');
+      throw new Error(res.message || 'unknown error');
   }
   return res;
 }, (error) => {
-  _.toast("网络异常", 'fail');
-  return Promise.reject(error);
+  throw new Error("网络异常", 'fail');
 });
-

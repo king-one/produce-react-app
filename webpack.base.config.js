@@ -6,11 +6,18 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const htmlPagePluginConfig = require('./htmlpage.config');
 const entries = require('./entries');
+const reactCommon =  [
+      'react',
+      'react-dom',
+      'react-router',
+      'redux',
+      'react-redux'
+];
 const resolve = str => path.resolve(__dirname, str);
 const commonPluginsConfig = [
   /*new AssetsPlugin({
-    filename: 'dist/assets.js',
-    processOutput: assets => 'window.WEBPACK_ASSETS=' + JSON.stringify(assets)
+      filename: 'dist/assets.js',
+      processOutput: assets => 'window.WEBPACK_ASSETS=' + JSON.stringify(assets)
   }), */
   new webpack.ProvidePlugin({
     $: 'jquery',
@@ -25,7 +32,7 @@ const commonPluginsConfig = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: function (module) {
-      return module.context && module.context.indexOf('node_modules') !== -1;
+      return module.context  && module.context.indexOf('node_modules') !== -1 &&  reactCommon.some( v => module.context.indexOf(v) !== -1 );
     }
   }),
   new webpack.optimize.CommonsChunkPlugin({
@@ -40,20 +47,15 @@ const commonPluginsConfig = [
 ]
 const baseConfig = {
   entry: Object.assign(entries, {
-    'react-common': [
-      'react',
-      'react-dom',
-      'react-router',
-      'redux',
-      'react-redux'
-    ]
+    'react-common':reactCommon
   }),
   resolve: {
     alias: {
       '@': resolve(''),
-      'components': resolve('src/components'),
+      'components': resolve('src/public/components'),
       'node_modules': resolve('node_modules'),
-      'pages': resolve('src/pages'),
+      'public': resolve('src/public'),
+      'pages': resolve('src/pages')
     },
     extensions: ['.js', '.jsx']
   },
@@ -66,7 +68,6 @@ const baseConfig = {
         options: {
           presets: ['es2015', 'stage-2', 'stage-3'],
           plugins: ['transform-runtime', 'transform-react-jsx']
-          // plugins: ['transform-runtime', 'transform-react-jsx',['import', { libraryName: 'antd', style: true }]]  //antd css 按需加载配置
         }
       }
     },

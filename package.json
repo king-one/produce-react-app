@@ -2,11 +2,12 @@
   "name": "start-react-app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "",
   "scripts": {
     "lint": "eslint --fix --ext .js,.jsx src",
-    "start": "webpack-dev-server  --progress --colors  --inline --hot --config ./webpack.dev.config.js",
-    "build": "set NODE_ENV=production && webpack --config ./webpack.pro.config.js"
+    "start": "node-dev ./server.js",
+    "build": "cross-env NODE_ENV=production && webpack --config ./webpack.pro.config.js",
+    "theme": "node bin/theme.js -#42a5f5:#ff7043 -#2196f3:#ff5722 -#1e88e5:#f4511e"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
+    "eslint": "^4.8.0",
     "css-loader": "^0.28.4",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-babel": "^4.1.2",
@@ -31,27 +33,21 @@
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "less-loader": "^4.0.5",
+    "node-dev": "^3.1.3",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.0",
-    "webpack-dev-server": "^2.6.1"
+    "less": "^2.7.2",
+    "webpack-dev-server": "^2.6.1",
+    "open-browser-webpack-plugin": "0.0.5"
   },
   "dependencies": {
     "autoprefixer-loader": "^3.2.0",
-    "echarts": "^3.6.2",
-    "eslint": "^4.8.0",
-    "excellentexport": "^2.0.3",
     "jquery": "^1.11.0",
-    "jquery-ui": "^1.12.1",
-    "less": "^2.7.2",
-    "onfire.js": "^1.0.6",
-    "open-browser-webpack-plugin": "0.0.5",
-    "rc-calendar": "^9.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^5.0.5",
     "react-router": "^2.8.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "zui": "^1.5.0"
+    "redux-thunk": "^2.2.0"
   }
 }
