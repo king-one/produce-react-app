@@ -52,7 +52,7 @@ $ npm start
 $ npm start 3100
 ```
 ##### 阅读前端代码规范
-详见code-style文件
+>详见code-style文件
 ##### 代码规范检查
 ```
 $ npm run lint
@@ -63,7 +63,7 @@ $ npm run lint
 $ npm run lint
 $ npm run build
 ```
-***请勿跳过代码规范检查*** 规范前端代码很重要
+>*请勿跳过代码规范检查*  规范前端代码很重要
 >完成后,只需将dist目录 交付后端
 ##### 修改服务器配置
 >脚手架采用 browser history 控制 URL，服务器也需要做相应的配置。
