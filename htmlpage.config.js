@@ -1,6 +1,10 @@
-/**
- * Created by dell on 2017/8/20.
+/*
+ * @Author: chen gong
+ * @Date: 2018-04-12 17:38:00
+ * @Last Modified by:   chen gong
+ * @Last Modified time: 2018-04-12 17:38:00
  */
+
 'use strict';
 const path = require('path');
 const fs = require('fs');
@@ -12,7 +16,7 @@ const isProduction = function () {
 const htmlPages = [{
   template: resolve('src/pages/home/index.html'),
   filename: resolve('dist/index.html'),
-  favicon: 'favicon.ico', 
+  favicon: 'favicon.ico',
 },{
   template: resolve('src/pages/other/index.html'),
   filename: resolve('dist/other.html'),
@@ -31,7 +35,7 @@ const pagePlugins = function (htmlPages) {
     console.log('----remove file already have---' + htmlPages[i].filename)
     }*/
     plugins.push(new HtmlWebpackPlugin({
-      template: htmlPages[i].template, 
+      template: htmlPages[i].template,
       filename: htmlPages[i].filename, //输出路径 还可以是jsp或者php后缀 可以实现html转jsp等后台模板
       inject: true, //js插入的位置，true/'head'/'body'/false
       chunks: htmlPages[i].chunks,

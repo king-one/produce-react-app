@@ -1,4 +1,10 @@
-/* 
+/*
+ * @Author: chen gong
+ * @Date: 2018-04-12 17:38:42
+ * @Last Modified by: chen gong
+ * @Last Modified time: 2018-04-12 17:39:11
+ */
+/*
  更换配色方案  npm run theme  -原颜色:目标颜色，支持多个，空格隔开
  缺陷  暂时不支持 rga
 */
@@ -29,7 +35,7 @@ function pushSheet(dir) {
   })
 }
 // pushSheet(path.join(__dirname, '../app'))
-pushSheet(path.join(__dirname, '../variables.less'))
+// pushSheet(path.join(__dirname, '../variables.less'))
 var reg = new RegExp(sourceColors.join('|'), 'gi')
 sheets.forEach(function(sheet) {
   var content = fs.readFileSync(sheet, 'utf-8')

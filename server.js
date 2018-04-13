@@ -1,3 +1,10 @@
+/*
+ * @Author: chen gong
+ * @Date: 2018-04-12 17:37:15
+ * @Last Modified by: chen gong
+ * @Last Modified time: 2018-04-12 22:45:02
+ */
+'use strict';
 const express = require('express')
 const path = require('path')
 const webpack = require('webpack')
@@ -15,8 +22,8 @@ const middleware = webpackDevMiddleware(webpack(config), {
   }
 })
 app.use(middleware);
-app.use('/server/*', serveIndex(__dirname, {'icons': true})) 
-app.use(express.static(path.join(__dirname, publicPath),{index:false}))
+app.use('/server', serveIndex(__dirname, { 'icons': true }))
+app.use(express.static(path.join(__dirname, publicPath), { index: false }))
 const getPage = function (page) {
   const htmlPath = path.join(__dirname, publicPath + '/' + page + '.html');
   console.log(htmlPath);
@@ -28,8 +35,7 @@ const getPage = function (page) {
   }
   return result;
 }
-app.use('/other/*', function (req, res, next) {
-  console.log('aaa')
+app.get('/other', function (req, res, next) {
   res.write(getPage('other'));
   res.end();
 });

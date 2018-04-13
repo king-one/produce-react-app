@@ -1,3 +1,9 @@
+/*
+ * @Author: chen gong
+ * @Date: 2018-04-12 17:37:36
+ * @Last Modified by:   chen gong
+ * @Last Modified time: 2018-04-12 17:37:36
+ */
 'use strict';
 // const glob = require('glob');
 const webpack = require('webpack');

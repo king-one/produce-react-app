@@ -1,7 +1,13 @@
+/*
+ * @Author: chen gong
+ * @Date: 2018-04-12 17:38:10
+ * @Last Modified by:   chen gong
+ * @Last Modified time: 2018-04-12 17:38:10
+ */
 /**
  * 全局配置
  */
-import axios from axios;
+import axios from 'axios';
 import authority from 'public/authority';
 import { browserHistory } from 'react-router';
 // import NProgress from 'nprogress' //暂时不用
