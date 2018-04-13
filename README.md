@@ -72,6 +72,8 @@ $ npm run build
 >是否登录由服务器返回 {"code": 401} 前端跳转到login
 ##### AJAX 全局配置
 >请求工具为对axios 二次封装的 fetch.js 请求url可以在 config.js 下进行全局配置
-##### AJAX 主题切换
-> 更换配色方案  npm run theme  -原颜色:目标颜色，支持多个，空格隔开
+##### 更换配色方案
+```
+npm run theme -原颜色:目标颜色 //支持多个，空格隔开
+```
 
