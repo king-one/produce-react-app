@@ -21,15 +21,15 @@ const authority = {
   },
 
   destroy() {
+    delete authority.user
     localStorage.removeItem(authority.USER_KEY);
   }
 };
-
-if (__DEV__) {
-  // 开发环境登录状态写死
-  authority.register({
-    name: 'DEMO'
-  });
-}
-
+//
+// if (NODE_ENV) {
+//   // 开发环境登录状态写死
+//   authority.register({
+//     name: 'DEMO'
+//   });
+// }
 export default authority;
