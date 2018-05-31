@@ -5,6 +5,6 @@
 ####4.可自定义主题、拓展配置
 ```
 $ npm install -g start-react-app
-$ cstart-react-app app-name
+$ start-react-app app-name
 
 ```
